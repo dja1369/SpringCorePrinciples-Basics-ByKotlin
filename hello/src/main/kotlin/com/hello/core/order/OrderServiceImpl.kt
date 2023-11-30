@@ -7,8 +7,10 @@ import com.hello.core.member.Member
 import com.hello.core.member.MemberRepository
 import com.hello.core.member.MemoryMemberRepository
 
-class OrderServiceImpl(private val memberRepository: MemberRepository,
-    private val discountPolicy: DiscountPolicy): OrderService {
+class OrderServiceImpl(
+    private val memberRepository: MemberRepository,
+    private val discountPolicy: DiscountPolicy
+): OrderService {
         // 생성자 주입으로 변경
 //    private val memberRepository: MemberRepository = MemoryMemberRepository()
 //    private val discountPolicy: DiscountPolicy = FIxDiscountPolicy()
