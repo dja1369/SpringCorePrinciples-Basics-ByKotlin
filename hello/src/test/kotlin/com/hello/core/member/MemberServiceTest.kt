@@ -1,10 +1,19 @@
 package com.hello.core.member
 
+import com.hello.core.AppConfig
 import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class MemberServiceTest {
-    private val memberService: MemberService = MemberServiceImpl()
+    private lateinit var memberService: MemberService
+//    private val memberService: MemberService = MemberServiceImpl()
+
+    @BeforeEach
+    fun beforeEach(){
+        val appConfig = AppConfig()
+        memberService = appConfig.memberService()
+    }
     @Test
     fun join(){
         //given

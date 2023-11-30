@@ -9,8 +9,11 @@ import com.hello.core.order.OrderService
 import com.hello.core.order.OrderServiceImpl
 
 fun main() {
-    val memberService: MemberService = MemberServiceImpl()
-    val orderService: OrderService = OrderServiceImpl()
+    val appConfig = AppConfig()
+//    val memberService: MemberService = MemberServiceImpl() // DI 주입으로 인해 변경
+    val memberService: MemberService = appConfig.memberService()
+//    val orderService: OrderService = OrderServiceImpl()
+    val orderService: OrderService = appConfig.orderService()
 
     val member = Member(1, "memberA", Grade.VIP)
     memberService.join(member)
