@@ -7,13 +7,16 @@ import com.hello.core.member.MemberServiceImpl
 import com.hello.core.order.Order
 import com.hello.core.order.OrderService
 import com.hello.core.order.OrderServiceImpl
+import org.springframework.context.ApplicationContext
+import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 fun main() {
-    val appConfig = AppConfig()
-//    val memberService: MemberService = MemberServiceImpl() // DI 주입으로 인해 변경
-    val memberService: MemberService = appConfig.memberService()
-//    val orderService: OrderService = OrderServiceImpl()
-    val orderService: OrderService = appConfig.orderService()
+    // 스프링 컨테이너 생성
+    // ApplicationContext 는 스프링 컨테이너 인터페이스이며 AnnotationConfigApplicationContext 는 스프링 컨테이너 구현체이다.
+    val applicationContext: ApplicationContext = AnnotationConfigApplicationContext(AppConfig::class.java)
+    val memberService: MemberService = applicationContext.getBean("memberService", MemberService::class.java)
+    val orderService: OrderService = applicationContext.getBean("orderService", OrderService::class.java)
+
 
     val member = Member(1, "memberA", Grade.VIP)
     memberService.join(member)
