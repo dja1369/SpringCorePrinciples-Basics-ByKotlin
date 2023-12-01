@@ -5,6 +5,7 @@ import com.hello.core.member.MemberService
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 class SingletonTest {
     @Test
@@ -32,4 +33,21 @@ class SingletonTest {
         Assertions.assertThat(singletonService1).isEqualTo(singletonService2) // 동등성
         Assertions.assertThat(singletonService1).isSameAs(singletonService2) // 동일성
     }
+
+    @Test
+    @DisplayName("스프링 컨테이너와 싱글톤")
+    fun springContainer() {
+        val appConfig = AnnotationConfigApplicationContext(AppConfig::class.java)
+
+        // 호출 할때 마다 객체 생성
+        val memberService1 = appConfig.getBean("memberService", MemberService::class.java)
+        val memberService2: MemberService = appConfig.getBean("memberService", MemberService::class.java)
+
+        println("memberService1 $memberService1")
+        println("memberService2 $memberService2")
+
+        // memberService1 != memberService2
+        Assertions.assertThat(memberService1).isSameAs(memberService2)
+    }
+
 }

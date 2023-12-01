@@ -22,4 +22,9 @@ class OrderServiceImpl(
         val discountPrice: Int = discountPolicy.discount(member, itemPrice)
         return Order(memberId, itemName, itemPrice, discountPrice)
     }
+
+    // 테스트 용도
+    fun getMemberRepository(): MemberRepository {
+        return memberRepository
+    }
 }
