@@ -6,12 +6,19 @@ import com.hello.core.discount.RateDiscountPolicy
 import com.hello.core.member.Member
 import com.hello.core.member.MemberRepository
 import com.hello.core.member.MemoryMemberRepository
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 
+@Component
 class OrderServiceImpl(
     private val memberRepository: MemberRepository,
     private val discountPolicy: DiscountPolicy
 ): OrderService {
-        // 생성자 주입으로 변경
+
+//    @Autowired 스프링에선 생성자가 하나만 있으면 @Autowired 를 생략해도 자동 주입이 된다.
+//    constructor(memberRepository: MemberRepository): this(memberRepository, FIxDiscountPolicy())
+
+//    생성자 주입으로 변경
 //    private val memberRepository: MemberRepository = MemoryMemberRepository()
 //    private val discountPolicy: DiscountPolicy = FIxDiscountPolicy()
 //    private val discountPolicy: DiscountPolicy = RateDiscountPolicy()

@@ -1,7 +1,9 @@
 package com.hello.core.member
 
+import org.springframework.stereotype.Component
 import java.util.concurrent.ConcurrentHashMap
 
+@Component
 class MemoryMemberRepository: MemberRepository {
     companion object {
         private val store = HashMap<Long, Member>()
